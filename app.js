@@ -56,9 +56,9 @@ app.post('/collect', function(req, res){
 
 	var wordCount = searchS(/\s+\b/);
 	var emojiCount = searchM(/:[a-z_0-9]*:/g);
-	var exclaCount = searchM(/!/g);
-	var questionMark = searchM(/\?/g);
-	var elipseCount = searchM(/\.\.\./g);
+//	var exclaCount = searchM(/!/g);
+//	var questionMark = searchM(/\?/g);
+//	var elipseCount = searchM(/\.\.\./g);
 
 
 	//Structure Data
@@ -73,10 +73,10 @@ app.post('/collect', function(req, res){
 		cd3: 	msgText,
 		cm1: 	wordCount,
 		cm2: 	emojiCount,
-		cm3: 	exclaCount,
+//		cm3: 	exclaCount,
 	//	cm4: 	letterCount,
-		cm5: 	elipseCount, 
-		cm6: 	questionMark, //need to set up in GA
+//		cm5: 	elipseCount,
+//		cm6: 	questionMark, //need to set up in GA
 		dh:		teamDomain+".slack.com",
 		dp:		"/"+channel.name,
 		dt:		"Slack Channel: "+channel.name,
@@ -84,12 +84,12 @@ app.post('/collect', function(req, res){
 		ec: 	"slack: "+ channel.name + "|" + channel.id,
 		ea: 	"post by " + user.id,
 		el: 	msgText,
-		ev: 	1 
+		ev: 	1
 	};
 	console.log(JSON.stringify(data));
 	console.log(req.body);
-	//Make Post Request	
-	request.post("https://www.google-analytics.com/collect?" + qs.stringify(data), 
+	//Make Post Request
+	request.post("https://www.google-analytics.com/collect?" + qs.stringify(data),
 		function(error, resp, body){
 		console.log(error);
 	})
@@ -98,5 +98,5 @@ app.post('/collect', function(req, res){
 
 //Start Server
 app.listen(port, function () {
-	console.log('Listening on port ' + port); 
+	console.log('Listening on port ' + port);
 });
